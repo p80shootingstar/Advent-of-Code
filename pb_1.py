@@ -60,6 +60,10 @@ def tableau_calibration_doc(fichier):
 #print(tableau_calibration_doc('input.txt'))
 
 def solve(fichier):
+    """Renvoie la somme du tableau formes par les nombres de calibration recuperes
+    dans le fichier passe en argument.
+    Renvoie un entier."""
+    
     tableau_chaines_caracteres,n=tableau_calibration_doc(fichier)[0],tableau_calibration_doc(fichier)[1]
     tableau_resultat=list([0]*n)
 

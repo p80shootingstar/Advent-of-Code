@@ -32,11 +32,10 @@ def recuperateur_chiffres(mot):
     Renvoie le resultat sous la forme d'un entier."""
 
     intermediaire=str('')
-    resultat=0
 
     n=len(mot)
     for k in range(n): # Tests pour retrouver des chiffres ecrits en lettres.
-        # Test pour retrouver 'on'.
+        # Test pour retrouver 'one'.
         if mot[k]=='o':
             if k+1<n-1 and mot[k+1]=='n':
                 if k+2<=n-1 and mot[k+2]=='e':
@@ -95,12 +94,6 @@ def recuperateur_chiffres(mot):
         if mot[k] in ['1','2','3','4','5','6','7','8','9']:
             intermediaire=intermediaire+mot[k]
 
-    #if intermediaire=='':
-        #intermediaire='0'
-
-    # Transformation du resultat, qui est une chaine de caracteres pour l'instant, en entier.
-    #resultat=int(intermediaire)
-
     return intermediaire
     
 # print(recuperateur_chiffres(mot1))
@@ -116,6 +109,7 @@ def nettoyage(fichier):
     """Renvoie un tableau d'entiers contenant les nombres formes par le fichier passe en argument.
     Ces nombre sont formes de chiffres ecrits en numerique (1,2,...) ou en lettres (one, txo,...).
     Ils sont ici traduits en chaine de caracteres."""
+
     tableau_a_nettoyer,n=lecture_fichier(fichier)[0],lecture_fichier(fichier)[1]
     tableau_resultat=list([0]*n)
 
@@ -130,6 +124,7 @@ def tableau_calibration_doc(fichier):
     """Renvoie un tableau contenant les nombres de calibrations.
     Ces nombres sont formes de deux digits, a partir du tableau nettoye des caractères non numeriques.
     Le tableau renvoye contient des chaines de caracteres."""
+
     tableau_nettoye,n=nettoyage(fichier)[0], nettoyage(fichier)[1] # recuperation du tableau nettoye : i.e. avec uniquement les chiffres de chaque ligne, lus de gauche a droite.
     tableau_resultat=tableau_nettoye # creation du tableau resultat, copie du tableau nettoye (donc de longueur egale au nombre de lignes du fichier).
 
@@ -145,6 +140,10 @@ def tableau_calibration_doc(fichier):
 # print(tableau_calibration_doc('input.txt'))
 
 def solve(fichier):
+    """Renvoie la somme du tableau formes par les nombres de calibration recuperes
+    dans le fichier passe en argument.
+    Renvoie un entier."""
+
     tableau_chaines_caracteres,n=tableau_calibration_doc(fichier)[0],tableau_calibration_doc(fichier)[1]
     tableau_resultat=list([0]*n)
 
@@ -153,3 +152,5 @@ def solve(fichier):
     return sum(tableau_resultat)
 
 print(solve('input.txt'))
+
+# Resultat : 55614, OK.
