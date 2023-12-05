@@ -11,10 +11,6 @@ def lecture_fichier(fichier):
     chemin='C:/Users/nicol/OneDrive/Documents/Informatique/advent_of_code/pb_2/'
     F=open(chemin+fichier,'r')
 
-    #chaine_caracteres=str()
-    #for ligne in F:
-        #chaine_caracteres=chaine_caracteres+ligne
-
     liste_chaine_caracteres=list()
     for ligne in F:
         liste_chaine_caracteres.append(ligne.split('\n'))
@@ -85,6 +81,10 @@ def analyse_jeu(game):
 #print(analyse_jeu(game5))
 
 def analyse_input(fichier):
+    """Renvoie un tableau contenant les nombres de cubes rouges, verts et bleus (dans cet ordre)
+    tires pour chaque tirage de chaque jeu, du fichier passe en argument.
+    Renvoie un tableau de tableaux de tableaux de 3 entiers."""
+
     liste_chaine_caracteres,n=lecture_fichier(fichier)[0],lecture_fichier(fichier)[1]
     liste_resultats=list([0]*n)
     indice_resultat=0
@@ -98,6 +98,10 @@ def analyse_input(fichier):
 #print(analyse_input('input.txt'))
 
 def traitement_input(fichier):
+    """Renvoie un tableau contenant les indices des jeux du fichier passe en argument pour lesquels
+    les differents tirages respectent les nombres maximums de cubes fixes par le gnome.
+    Renvoie egalement la somme de ce tableau."""
+
     tableau_input=analyse_input(fichier)
     r_max,g_max,b_max=12,13,14 # nombres maximum de cubes theoriques
     liste_indices_jeux=list([])
@@ -107,12 +111,15 @@ def traitement_input(fichier):
         flag=True
         for tirage in jeu:
             if tirage[0]>r_max or tirage[1]>g_max or tirage[2]>b_max:
+                # on a trouve un tirage qui ne respecte pas les nombres maximum de cubes theoriques, 
+                # on ne garde donc pas le jeu associeà ce tirage
                 flag=False
         if flag:
+            # les tirages du jeu etudie respecte les nombres maximum de cubes theoriques, 
+            # on ajoute donc l'indice de ce jeu a notre tableau de resultat
             liste_indices_jeux.append(indice_jeu)
         indice_jeu+=1
     
     return liste_indices_jeux, sum(liste_indices_jeux)
 
 #print(traitement_input('input.txt')) # Resultat : 1734 : OK.
-

@@ -11,10 +11,6 @@ def lecture_fichier(fichier):
     chemin='C:/Users/nicol/OneDrive/Documents/Informatique/advent_of_code/pb_2/'
     F=open(chemin+fichier,'r')
 
-    #chaine_caracteres=str()
-    #for ligne in F:
-        #chaine_caracteres=chaine_caracteres+ligne
-
     liste_chaine_caracteres=list()
     for ligne in F:
         liste_chaine_caracteres.append(ligne.split('\n'))
@@ -129,4 +125,6 @@ def traitement_input(fichier):
 
     return liste_resultats, sum(liste_resultats)
 
-print(traitement_input('input.txt')) # Resultat : 70387 : OK.
+#print(traitement_input('input.txt')) 
+
+# Resultat : 70387 : OK.
